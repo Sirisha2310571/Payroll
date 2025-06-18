@@ -1,0 +1,169 @@
+/* Global Reset and Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-image: url('login.png'); /* Use image.png as the background */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* Text color for the background image */
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Side Frame Login Box (Right-Aligned) */
+.login-box {
+    width: 320px; /* Adjust width for a side frame */
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 12px;
+    position: absolute;
+    right: 10%; /* Position on the right side */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    text-align: center;
+    animation: fadeIn 0.6s ease-out;
+    border: solid #7e8183; /* Added border for emphasis */
+}
+
+/* Heading Styles */
+h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #555;
+    font-weight: 600;
+}
+
+/* Textbox Styles */
+.textbox {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.textbox input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in;
+}
+
+.textbox input:focus {
+    border-color: #42a5f5;
+    box-shadow: 0 0 10px rgba(66, 165, 245, 0.3);
+}
+
+.textbox input::placeholder {
+    color: #999;
+}
+
+/* Button Styles */
+.btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #42a5f5;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1e88e5;
+    transform: translateY(-2px);
+}
+
+/* Forgot Password Link */
+.forgot-password {
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: #42a5f5;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #1e88e5;
+    text-decoration: underline;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+}
+
+.alert-info {
+    background-color: #2196F3;
+    color: white;
+}
+
+.alert-warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+
+/* Animations */
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 480px) {
+    .login-box {
+        width: 90%; /* Make login box smaller on mobile */
+        padding: 30px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+
+    .textbox input {
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 14px;
+        font-size: 16px;
+    }
+}

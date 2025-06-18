@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll System - Attendance</title>
+    <link rel="stylesheet" href="/static/atttendance.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Payroll System</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('employee') }}">Employees</a></li>
+            <li><a href="{{ url_for('payroll') }}">Payroll</a></li>
+            <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Attendance Management</h1>
+            <p>Manage daily attendance and leave applications</p>
+        </header>
+
+        <!-- Add Daily Attendance Form -->
+        <section id="daily-attendance">
+            <h2>Record Daily Attendance</h2>
+            <form method="POST" action="{{ url_for('attendance') }}">
+                <label for="employee_id">Employee ID</label>
+                <input type="text" id="employee_id" name="employee_id" required>
+                
+
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="present">Present</option>
+                    <option value="absent">Absent</option>
+                    <option value="late">Late</option>
+                </select>
+ 
+                <label for="check_in_time">Check-In Time</label>
+                <input type="time" id="check_in_time" name="check_in_time" required>
+
+                <label for="check_out_time">Check-Out Time</label>
+                <input type="time" id="check_out_time" name="check_out_time">
+
+                <button type="submit">Add Attendance</button>
+            </form>
+        </section>
+
+        <!-- View Attendance Records -->
+        <section id="view-attendance">
+            <h2>Attendance Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Status</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in attendance_records %}
+                    <tr>
+                        <td>{{ record['employee_id'] }}</td>
+                        <td>{{ record['first_name'] }} {{ record['last_name'] }}</td>
+                        <td>{{ record['status'] }}</td>
+                        <td>{{ record['check_in_time'] }}</td>
+                        <td>{{ record['check_out_time'] }}</td>
+                        <td>{{ record['date'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section id="add-leave">
+            <h2>Submit Leave Request</h2>
+            <form method="POST" action="{{ url_for('attendance') }}">
+                <label for="employee_id">Employee ID</label>
+                <input type="text" id="employee_id" name="employee_id" required>
+        
+                <label for="leave_type">Leave Type</label>
+                <input type="text" id="leave_type" name="leave_type" required>
+        
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" name="start_date" required>
+        
+                <label for="end_date">End Date</label>
+                <input type="date" id="end_date" name="end_date" required>
+        
+                <button type="submit" name="add_leave">Submit Leave Request</button>
+            </form>
+        </section>
+
+        <!-- Manage Leave Applications -->
+        <section id="leave-management">
+            <h2>Leave Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for leave in leave_records %}
+                    <tr>
+                        <td>{{ leave['employee_id'] }}</td>
+                        <td>{{ leave['first_name'] }} {{ leave['last_name'] }}</td>
+                        <td>{{ leave['leave_type'] }}</td>
+                        <td>{{ leave['start_date'] }}</td>
+                        <td>{{ leave['end_date'] }}</td>
+                        <td>{{ leave['status'] }}</td>
+                        
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Leave Request Form -->
+            
+
+        </section>
+    </div>
+</body>
+</html>

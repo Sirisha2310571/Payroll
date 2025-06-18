@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll System - Payroll</title>
+    <link rel="stylesheet" href='/static/pay.css'>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Payroll System</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('employee') }}">Employees</a></li>
+            <li><a href="{{ url_for('payroll') }}">Payroll</a></li>
+            <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Payroll Management</h1>
+            <p>Manage payroll records and view payment details</p>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                          <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Add Payroll Form -->
+        <section id="add-payroll">
+            <h2>Add Payroll Record</h2>
+            <form method="POST">
+                <label for="employee_id">Employee ID</label>
+                <input type="text" id="employee_id" name="employee_id" required>
+
+                <label for="pay_period_start">Pay Period Start</label>
+                <input type="date" id="pay_period_start" name="pay_period_start" required>
+
+                <label for="pay_period_end">Pay Period End</label>
+                <input type="date" id="pay_period_end" name="pay_period_end" required>
+
+                <label for="base_salary">Base Salary</label>
+                <input type="number" id="base_salary" name="base_salary" step="0.01" required>
+
+                <label for="deductions">Deductions</label>
+                <input type="number" id="deductions" name="deductions" step="0.01" required>
+
+                <label for="bonuses">Bonuses</label>
+                <input type="number" id="bonuses" name="bonuses" step="0.01" required>
+
+                <button type="submit">Add Payroll</button>
+            </form>
+        </section>
+
+        <!-- View Payroll Records -->
+        <section id="view-payroll">
+            <h2>View Payroll Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payroll ID</th>
+                        <th>Employee Name</th>
+                        <th>Base Salary</th>
+                        <th>Deductions</th>
+                        <th>Bonuses</th>
+                        <th>Total Salary</th>
+                        <th>Pay Period Start</th>
+                        <th>Pay Period End</th>
+                        <th>Generated On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in payroll_records %}
+                    <tr>
+                        <td>{{ record[0] }}</td> <!-- payroll_id -->
+                        <td>{{ record[1] }} {{ record[2] }}</td> <!-- first_name, last_name -->
+                        <td>${{ record[3] }}</td> <!-- base_salary -->
+                        <td>${{ record[4] }}</td> <!-- deductions -->
+                        <td>${{ record[5] }}</td> <!-- bonuses -->
+                        <td>${{ record[6] }}</td> <!-- total_salary -->
+                        <td>{{ record[7] }}</td> <!-- pay_period_start -->
+                        <td>{{ record[8] }}</td> <!-- pay_period_end -->
+                        <td>{{ record[9] }}</td> <!-- generated_on -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

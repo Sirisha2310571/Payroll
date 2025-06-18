@@ -1,0 +1,232 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styles */
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #34495e; /* Dark Teal */
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.sidebar-menu {
+    list-style-type: none;
+}
+
+.sidebar-menu li {
+    margin: 15px 0;
+}
+
+.sidebar-menu li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+    background-color: #16a085; /* Lighter Teal on Hover */
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #2c3e50; /* Charcoal Gray */
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    color: #7f8c8d; /* Light Gray */
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.action-buttons .button {
+    background-color: #16a085; /* Teal */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.action-buttons .button:hover {
+    background-color: #16a085; /* Teal */
+}
+
+/* Employee Table */
+.employee-table h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.employee-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.employee-table th, .employee-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.employee-table th {
+    background-color: #1abc9c; /* Bright Teal */
+    color: white;
+}
+
+.employee-table td {
+    font-size: 16px;
+    color: #7f8c8d; /* Light Gray */
+}
+
+.employee-table td a.button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.employee-table td a.button:hover {
+    background-color: #16a085;
+}
+
+/* Form Styles for Add/Edit Employee */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #16a085; /* Teal */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #16a085; /* Teal */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.action-buttons .button {
+    background-color: #16a085; /* Teal */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons .button:hover {
+    background-color: #16a085; /* Teal */
+}
+
+/* Specific Styles for Add Employee and View Employee Buttons */
+.add-button {
+    background-color: #2ecc71;  /* Green */
+}
+
+.add-button:hover {
+    background-color: #27ae60;  /* Darker Green on Hover */
+}
+
+.view-button {
+    background-color: #f39c12;  /* Orange */
+}
+
+.view-button:hover {
+    background-color: #e67e22;  /* Darker Orange on Hover */
+}
+
+/* Adjusting button size for clarity and balance */
+.action-buttons .button {
+    font-size: 18px; /* Increase font size */
+    padding: 12px 25px; /* Increase padding for better visual balance */
+}

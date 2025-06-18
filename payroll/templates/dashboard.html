@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll System - Dashboard</title>
+    <link rel="stylesheet" href='/static/dashboard.css'>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Payroll System</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('employee') }}">Employees</a></li>
+            <li><a href="{{ url_for('payroll') }}">Payroll</a></li>
+            <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>Dashboard</h1>
+                <p>Welcome back!</p>
+            </div>
+        </header>
+
+        <!-- Dashboard Stats Cards -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Total Salary Disbursed</h3>
+                </div>
+                <div class="card-body">
+                    <h2>${{ total_salary_disbursed }}</h2>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Total Employees</h3>
+                </div>
+                <div class="card-body">
+                    <h2>{{ total_employees }}</h2>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Attendance Today</h3>
+                </div>
+                <div class="card-body">
+                    <h2>{{ attendance_today }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <section class="recent-activity">
+            <h3>Recent Activity</h3>
+            <div class="activity-list">
+                {% for activity in recent_activity %}
+                <div class="activity-item">
+                    <p><strong>{{ activity['action'] }}</strong> at <span class="time">{{ activity['timestamp'] }}</span></p>
+                </div>
+                {% else %}
+                <p>No recent activity available.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Leave Request List -->
+        <section class="leave-request">
+            <h3>Leave Requests</h3>
+            {% for leave in leave_requests %}
+            <div class="leave-request-item">
+                <p><strong>Employee ID:</strong> {{ leave['employee_id'] }}</p>
+                <p><strong>Leave ID:</strong> {{ leave['leave_id'] }}</p>
+
+                <!-- Form to update leave status -->
+                <form method="POST" action="{{ url_for('leave_status') }}">
+                    <input type="hidden" name="leave_id" value="{{ leave['leave_id'] }}">
+                    
+                    <select name="status">
+                        <option value="Pending" {% if leave['status'] == 'Pending' %}selected{% endif %}>Pending</option>
+                        <option value="Approved" {% if leave['status'] == 'Approved' %}selected{% endif %}>Approved</option>
+                        <option value="Declined" {% if leave['status'] == 'Declined' %}selected{% endif %}>Declined</option>
+                    </select>
+                    <button type="submit">Update Status</button>
+                </form>
+            {% else %}
+            <p>No recent activity available.</p>
+            {% endfor %}
+            </div>
+   
+        </section>
+             
+        <div class="main-content">
+            <!-- Flash Message -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-message">
+                        {% for category, message in messages %}
+                            <div class="{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+        </div>
+
+    </div>
+    
+
+</body>
+</html>
